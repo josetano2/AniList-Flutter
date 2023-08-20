@@ -16,7 +16,18 @@ ThemeData lightTheme = ThemeData(
         color: Colors.black,
       )
     ),
-    primaryColor: Colors.black
+    primaryColor: Colors.black,
+    scrollbarTheme: ScrollbarThemeData(
+      thumbColor: MaterialStateProperty.all(
+        Colors.lightBlue
+      ),
+      trackColor: MaterialStateProperty.all(
+        Colors.transparent
+      ),
+      trackBorderColor: MaterialStateProperty.all(
+        Colors.transparent
+      )
+    )
   );
 
   ThemeData darkTheme = ThemeData(

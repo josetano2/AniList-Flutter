@@ -81,291 +81,301 @@ class _DetailsPageState extends State<DetailsPage> {
     return Theme(
       data: isDarkTheme ? darkTheme : lightTheme,
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Stack(
-                    children: [
-                      Image(
-                        image: AssetImage(
-                          widget.anime.banner,
-                        ),
-                        height: 300,
-                        fit: BoxFit.cover,
-                      ),
-                      Opacity(
-                        opacity: 0.3,
-                        child: Container(
-                          height: 300,
-                          color: Colors.black,
-                        )
-                      ),
-                    ],
-                  ),
-                  Positioned(
-                    left: 0,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(30),
-                        child: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 20,
-                    top: 200,
-                    child: ClipRect(
-                      child: Image(
-                        image: AssetImage(
-                          widget.anime.image,
-                        ),
-                        height: 175,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 25.0, horizontal: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+        body: Scrollbar(
+          thickness: 8.0,
+          thumbVisibility: true,
+          interactive: true,
+          trackVisibility: false,
+          radius: const Radius.circular(10),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Stack(
+                  clipBehavior: Clip.none,
                   children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.37,
-                      height: 48,
-                      decoration: BoxDecoration(
-                          color: Colors.lightBlue,
-                          borderRadius: BorderRadius.circular(5.0)),
-                      child: TextButton(
-                        onPressed: addAnimeToMyList,
-                        child: Text(
-                          getAnimeState() ? "Remove from List" : "Add to Watchlist",
-                          style: TextStyle(
-                              fontSize: getAnimeState() ? 15 : 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                    Stack(
+                      children: [
+                        Image(
+                          image: AssetImage(
+                            widget.anime.banner,
+                          ),
+                          height: 300,
+                          fit: BoxFit.cover,
+                        ),
+                        Opacity(
+                          opacity: 0.3,
+                          child: Container(
+                            height: 300,
+                            color: Colors.black,
+                          )
+                        ),
+                      ],
+                    ),
+                    Positioned(
+                      left: 0,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(30),
+                          child: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                            size: 30,
+                          ),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 249, 43, 43),
-                          borderRadius: BorderRadius.circular(5.0)),
-                      child: TextButton(
-                        onPressed: addAnimeToFavList,
-                        child: Icon(
-                          getFavoriteState() ?  Icons.favorite : Icons.favorite_border,
-                          color: Colors.white,
+                    Positioned(
+                      left: 20,
+                      top: 200,
+                      child: ClipRect(
+                        child: Image(
+                          image: AssetImage(
+                            widget.anime.image,
+                          ),
+                          height: 175,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 25.0, horizontal: 15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        widget.anime.title,
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.37,
+                        height: 48,
+                        decoration: BoxDecoration(
+                            color: Colors.lightBlue,
+                            borderRadius: BorderRadius.circular(5.0)),
+                        child: TextButton(
+                          onPressed: addAnimeToMyList,
+                          child: Text(
+                            getAnimeState() ? "Remove from List" : "Add to Watchlist",
+                            style: TextStyle(
+                                fontSize: getAnimeState() ? 15 : 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
-                      Text(
-                        "${widget.anime.rating}/10",
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 249, 43, 43),
+                            borderRadius: BorderRadius.circular(5.0)),
+                        child: TextButton(
+                          onPressed: addAnimeToFavList,
+                          child: Icon(
+                            getFavoriteState() ?  Icons.favorite : Icons.favorite_border,
+                            color: Colors.white,
+                          ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
-              ),
-              DefaultTabController(
-                length: 2,
-                child: Column(
-                  children: [
-                    TabBar(
-                      indicatorColor: Colors.lightBlue,
-                      tabs: [
-                        Tab(
-                          icon: Icon(
-                            Icons.movie,
-                            color: isDarkTheme ? Colors.white : Colors.black,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.anime.title,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Tab(
-                          icon: Icon(
-                            Icons.rate_review,
-                            color: isDarkTheme ? Colors.white : Colors.black,
+                        Text(
+                          "${widget.anime.rating}/10",
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
                           ),
                         )
                       ],
                     ),
-                    SizedBox(
-                      height: 550,
-                      child: TabBarView(
-                        children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Text(
-                                "Description",
-                                style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold
-                                  ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                widget.anime.description,
-                                textAlign: TextAlign.justify,
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Text(
-                                "Comment",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 24
-                                ),
-                              ),
-                              TextField(
-                                controller: commentController,
-                                decoration: InputDecoration(
-                                    hintText: "Insert your comment here!",
-                                    suffixIcon: GestureDetector(
-                                      onTap: validation,
-                                      child: const Icon(
-                                        Icons.send,
-                                        color: Colors.lightBlue,
-                                      ),
-                                    )
-                                  ),
-                                )
-                              ],
+                  ),
+                ),
+                DefaultTabController(
+                  length: 2,
+                  child: Column(
+                    children: [
+                      TabBar(
+                        indicatorColor: Colors.lightBlue,
+                        tabs: [
+                          Tab(
+                            icon: Icon(
+                              Icons.movie,
+                              color: isDarkTheme ? Colors.white : Colors.black,
                             ),
                           ),
+                          Tab(
+                            icon: Icon(
+                              Icons.rate_review,
+                              color: isDarkTheme ? Colors.white : Colors.black,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 550,
+                        child: TabBarView(
+                          children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                 const Text(
-                                  "Comments",
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text(
+                                  "Description",
                                   style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold
+                                    ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  widget.anime.description,
+                                  textAlign: TextAlign.justify,
+                                  style: const TextStyle(
+                                    color: Colors.grey,
                                   ),
                                 ),
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                Expanded(
-                                  child: ListView.builder(
-                                    padding: const EdgeInsets.all(0.0),
-                                    itemCount: widget.anime.comments.length,
-                                    itemBuilder: (context, index) {
-                                      Comment commentContent = widget.anime.comments[index];
-                                      return Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Center(
-                                                child: ClipRRect(
-                                                  borderRadius: BorderRadius.circular(100),
-                                                  child: const Image(
-                                                    width: 30,
-                                                    height: 30,
-                                                    image: AssetImage(
-                                                      "assets/pfp.png",
-                                                    )
+                                const Text(
+                                  "Comment",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 24
+                                  ),
+                                ),
+                                TextField(
+                                  controller: commentController,
+                                  decoration: InputDecoration(
+                                      hintText: "Insert your comment here!",
+                                      suffixIcon: GestureDetector(
+                                        onTap: validation,
+                                        child: const Icon(
+                                          Icons.send,
+                                          color: Colors.lightBlue,
+                                        ),
+                                      )
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                   const Text(
+                                    "Comments",
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Expanded(
+                                    child: ListView.builder(
+                                      padding: const EdgeInsets.all(0.0),
+                                      itemCount: widget.anime.comments.length,
+                                      itemBuilder: (context, index) {
+                                        Comment commentContent = widget.anime.comments[index];
+                                        return Column(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Center(
+                                                  child: ClipRRect(
+                                                    borderRadius: BorderRadius.circular(100),
+                                                    child: const Image(
+                                                      width: 30,
+                                                      height: 30,
+                                                      image: AssetImage(
+                                                        "assets/pfp.png",
+                                                      )
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              Column(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    commentContent.content,
-                                                    style: const TextStyle(
-                                                      fontSize: 18,
-                                                    ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        commentContent.content,
+                                                        style: const TextStyle(
+                                                          fontSize: 18,
+                                                        ),
+                                                        overflow: TextOverflow.ellipsis,
+                                                      ),
+                                                      Text(
+                                                        commentContent.commenter,
+                                                        style: const TextStyle(
+                                                          fontSize: 12,
+                                                          color: Colors.grey,
+                                                          fontWeight: FontWeight.bold
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      )
+                                                    ],
                                                   ),
-                                                  Text(
-                                                    commentContent.commenter,
-                                                    style: const TextStyle(
-                                                      fontSize: 12,
-                                                      color: Colors.grey,
-                                                      fontWeight: FontWeight.bold
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  )
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      );
-                                    }
-                                  )
-                                ),
-                              ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        );
+                                      }
+                                    )
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ]
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ],
+                          ]
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
