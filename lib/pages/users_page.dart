@@ -168,13 +168,16 @@ class _UsersPageState extends State<UsersPage> {
                             double leftGap = index == 0 ? 0 : 8.0;
                             double rightGap = index == Data.favList.length - 1 ? 0 : 8.0; 
                             return GestureDetector(
-                              onTap: () {
-                                Navigator.push(
+                              onTap: () async {
+                                await Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => DetailsPage(anime: Data.favList[index], username: widget.username),
                                   )
                                 );
+                                setState(() {
+                                  
+                                });
                               },
                               child: Container(
                                 margin: EdgeInsets.fromLTRB(leftGap, 0, rightGap, 0),

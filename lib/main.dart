@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qualif_flutter/anime_list.dart';
-import 'package:qualif_flutter/pages/details_page.dart';
 import 'package:qualif_flutter/pages/login_page.dart';
-import 'package:qualif_flutter/pages/main_page.dart';
-import 'package:qualif_flutter/pages/users_page.dart';
-import 'package:qualif_flutter/theme/theme.dart';
 
 void main(List<String> args) {
   runApp(const AniList());

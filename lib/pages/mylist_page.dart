@@ -58,13 +58,16 @@ class _MyListPageState extends State<MyListPage> {
                   itemCount: Data.myList.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
+                      onTap: () async {
+                        await Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => DetailsPage(anime: Data.myList[index], username: widget.username),
                           )
                         );
+                        setState(() {
+                          
+                        });
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
